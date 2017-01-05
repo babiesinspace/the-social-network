@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'pry-rails', :group => :development
 gem 'react-rails'
 gem 'devise'
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
