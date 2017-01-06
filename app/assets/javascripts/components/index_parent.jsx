@@ -4,6 +4,7 @@ class IndexParent extends React.Component {
     this.state = {
       users: []
     }
+    this.displayResults = this.displayResults.bind(this)
   }
   componentDidMount() {
     $.ajax({
@@ -11,8 +12,16 @@ class IndexParent extends React.Component {
       method: 'get'
     })
     .done(response => {
-      this.setState({users: response})
+      this.setState({
+        users: response
+      })
     }.bind(this))
+  }
+
+  displayResults(response) {
+    this.setState({
+      users: response
+    })
   }
 
   render(){
@@ -20,7 +29,7 @@ class IndexParent extends React.Component {
     return(
       <section>
         <div>
-          <SearchBar/>
+          <SearchBar onSearch={this.displayResults} />
         </div>
         <div>
           <Timeline users={this.state.users}/>

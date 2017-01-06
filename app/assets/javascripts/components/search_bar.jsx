@@ -1,5 +1,8 @@
 class SearchBar extends React.Component {
-
+  constructor() {
+    super()
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
   handleSubmit(event) {
     event.preventDefault();
     let searchBox = this.refs.searchBox
@@ -9,8 +12,9 @@ class SearchBar extends React.Component {
       data: {query: searchBox.value}
     })
     .done(function(r) {
-      console.log(r)
-    })
+      this.props.onSearch(r)
+      searchBox.value = "";
+    }.bind(this))
   }
 
   render() {
