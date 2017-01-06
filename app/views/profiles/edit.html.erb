@@ -1,4 +1,4 @@
-<%= form_for profile_path(@user) do |f| %>
+<%= form_for(@user, as: :profile, url: edit_profile_path(@user), method: :patch) do |f| %>
   <%= f.label :full_name %>
   <%= f.text_field :full_name %>
   <br/>
@@ -8,8 +8,8 @@
   <%= f.label :hometown %>
   <%= f.text_field :hometown %>
   <br/>
-  <%= f.label :current_town %>
-  <%= f.text_field :current_town %>
+  <%= f.label :current_city %>
+  <%= f.text_field :current_city %>
   <br/>
   <%= f.label :college %>
   <%= f.text_field :education %>

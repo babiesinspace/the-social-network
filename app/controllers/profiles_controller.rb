@@ -27,4 +27,19 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(profile_params)
+      redirect_to profile_url(@user)
+    else
+      render 'edit'
+    end
+  end
+
+  private
+
+    def profile_params
+      params.require(:user).permits(:full_name, :birthday, :hometown, :current_city, :education, :relationship_status)
+    end
+
 end
