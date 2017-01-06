@@ -8,6 +8,9 @@ class SearchBar extends React.Component {
       method: 'get',
       data: {query: searchBox.value}
     })
+    .done(function(r) {
+      console.log(r)
+    })
   }
 
   render() {

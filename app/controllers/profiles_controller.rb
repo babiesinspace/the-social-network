@@ -40,8 +40,9 @@ class ProfilesController < ApplicationController
   end
 
   def search
-    user = User.find_by(full_name: params[:query])
-
+    user = User.ransack(full_name_cont: params[:query])
+    results = user.result
+    render json: results
   end
 
   private
