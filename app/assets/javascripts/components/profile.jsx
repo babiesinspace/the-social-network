@@ -5,8 +5,8 @@ class Profile extends React.Component {
       friends: [],
       posts: [],
       user_info: []
-
     }
+    this.displayResults = this.displayResults.bind(this)
   }
   componentDidMount() {
     let path = window.location.pathname
@@ -19,16 +19,24 @@ class Profile extends React.Component {
       this.setState({user_info: response[0].user_info})
     }.bind(this))
   }
+  displayResults(response) {
+    this.setState({
+      friends: response
+    })
+  }
+
   render() {
     return(
-      <div>
-        <UserInfo info={this.state.user_info}/>
-        <Friends friends={this.state.friends}/>
-        <CreatePosts newPost={this.newPost}/>
-        <Posts posts={this.state.posts}/>
-
-      </div>
-
+        <div>
+          <UserInfo info={this.state.user_info}/>
+          <div>
+            <h4>Search Friends:</h4>
+            <SearchBar onSearch={this.displayResults} />
+            <Friends friends={this.state.friends}/>
+          </div>
+          <CreatePosts newPost={this.newPost}/>
+          <Posts posts={this.state.posts}/>
+        </div>
     )
   }
 }
