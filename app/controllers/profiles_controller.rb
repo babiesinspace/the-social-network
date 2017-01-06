@@ -39,10 +39,15 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def search
+    user = User.find_by(full_name: params[:query])
+
+  end
+
   private
 
     def profile_params
-      params.require(:user).permits(:full_name, :birthday, :hometown, :current_city, :education, :relationship_status)
+      params.require(:user).permits(:full_name, :birthday, :hometown, :current_city, :education, :relationship_status, :query)
     end
 
     def is_friend?
