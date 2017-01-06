@@ -25,8 +25,17 @@ class PostsController < ApplicationController
     end
   end
 
+#Untested (must first create form)
   def destroy
-
+    post = Post.find(params[:id])
+    if current_user == post.author || current_user == post.receiver
+      post.destroy
+      respond_to do |format|
+        format.html { redirect_to profile_url(post.receiver) }
+      end
+    else
+      flash[:error] = "You are not authorized to affect this post!"
+    end
   end
 
   private
