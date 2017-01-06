@@ -53,7 +53,7 @@ class ProfilesController < ApplicationController
   private
 
     def profile_params
-      params.require(:user).permits(:full_name, :birthday, :hometown, :current_city, :education, :relationship_status, :query)
+      params.require(:profile).permit(:full_name, :birthday, :hometown, :current_city, :education, :relationship_status, :query)
     end
 
     def is_friend?
