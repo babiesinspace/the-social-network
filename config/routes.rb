@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   # get '/profiles/:id', to: 'profiles#show'
   get '/logout', to: 'profiles#destroy'
 
-  resources :profiles, only: [:new, :create, :index, :edit] do
+  resources :profiles, only: [:show, :index, :edit] do
     #add custom route for profiles/search
-    resources :posts, only: [:create, :delete]
+    resources :posts, only: [:index, :create, :destroy]
     resources :friendships, only: [:index, :create, :destroy]
     resources :friend_requests, only: [:index, :create, :destroy]
   end
