@@ -10,6 +10,7 @@ class UserInfo extends React.Component {
         }\
         "}
       </style>
+        <li><h3><strong>About</strong></h3></li>
         <li>{this.props.info.full_name}</li>
         <li>{this.props.info.birthday}</li>
         <li>Hometown: {this.props.info.hometown}</li>

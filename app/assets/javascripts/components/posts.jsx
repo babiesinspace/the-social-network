@@ -4,7 +4,7 @@ class Posts extends React.Component {
       <div>
         <div>
 
-          <div className="col-sm-4">
+          <div>
           <h4>Posts</h4>
             {this.props.posts.map((post, i) =>
               <Post post={post} key={i} />
