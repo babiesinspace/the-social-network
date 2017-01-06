@@ -16,6 +16,11 @@ class ProfilesController < ApplicationController
     render json: display
   end
 
+  def edit
+    user = User.find(params[:id])
+    render json: user
+  end
+
   def destroy
     session.clear
     redirect_to root_url
