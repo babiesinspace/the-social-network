@@ -29,13 +29,21 @@ class Profile extends React.Component {
     return(
         <div>
           <UserInfo info={this.state.user_info}/>
-          <div>
+          <div className="col-sm-4">
             <h4>Search Friends:</h4>
             <SearchBar onSearch={this.displayResults} />
             <Friends friends={this.state.friends}/>
           </div>
-          <CreatePosts newPost={this.newPost}/>
-          <Posts posts={this.state.posts}/>
+          <div className="col-sm-4">
+            <CreatePosts newPost={this.newPost}/>
+            <Posts posts={this.state.posts}/>
+          </div>
+          <style> {"\
+            .col-sm-4{\
+              margin-left: 100px;\
+            }\
+            "}
+          </style>
         </div>
     )
   }
