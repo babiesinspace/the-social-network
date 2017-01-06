@@ -9,9 +9,9 @@ class Timeline extends React.Component {
          {this.props.users.map( (user) =>
            <User user={user} key={user.id} id={user.id}/>
          )}
-
+         </div>
        </div>
-     </div>
+    </div>
     )
   }
 }

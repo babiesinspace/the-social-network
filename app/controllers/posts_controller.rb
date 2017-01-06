@@ -12,12 +12,13 @@ class PostsController < ApplicationController
 
 #Untested (must first create form)
   def create
-    author = current_user
-    receiver = User.find(params[:profile_id])
     post = Post.new(post_params)
+    post.author = current_user
+    post.receiver = User.find(params[:profile_id])
+    binding.pry
     if post.save
       respond_to do |format|
-        format.html { redirect_to profile_url(receiver) }
+        format.html { redirect_to profile_url(post.receiver) }
         format.json { render json: post }
       end
     else
@@ -41,7 +42,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permits(:body, :author_id, :receiver_id)
+    params.require(:post).permit(:body, :author_id, :receiver_id)
   end
 
 end
