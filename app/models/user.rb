@@ -18,8 +18,8 @@ class User < ApplicationRecord
 
   has_many :inverse_friends, through: :inverse_friendships, source: :user_1
 
-  has_many :friend_requests, foreign_key: :requester_id
-  has_many :pending_requests, class_name: FriendRequest, foreign_key: :receiver_id
+  has_many :sent_requests, class_name: FriendRequest, foreign_key: :requester_id
+  has_many :received_requests, class_name: FriendRequest, foreign_key: :receiver_id
 
   def add_friend(friend)
     self.friends << friend unless self.friends.include?(friend) || friend == self
