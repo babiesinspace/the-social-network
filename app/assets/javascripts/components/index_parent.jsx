@@ -28,7 +28,8 @@ class IndexParent extends React.Component {
 
     return(
       <section>
-        <div>
+        <div className= "navbar-brand">
+          <h3>Search Users</h3>
           <SearchBar onSearch={this.displayResults} />
         </div>
         <div>
