@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
   root to: "profiles#index"
-  
-  # get '/profiles', to: 'profiles#index'
-  # get 'profiles/:id/edit', to: 'profiles#edit', as: :edit_profile
-  # get '/profiles/:id', to: 'profiles#show'
 
-  resources :profiles, only: [:show, :index, :edit] do
+  get '/search', to: "profiles#search"
+  resources :profiles, only: [:show, :index, :edit, :update] do
     #add custom route for profiles/search
     resources :posts, only: [:index, :create, :destroy]
     resources :friendships, only: [:index, :create, :destroy]

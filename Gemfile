@@ -35,6 +35,7 @@ gem 'pry-rails', :group => :development
 gem 'react-rails'
 gem 'devise'
 gem 'faker'
+gem 'ransack'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

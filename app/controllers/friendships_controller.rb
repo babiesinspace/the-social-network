@@ -1,4 +1,6 @@
 class FriendshipsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :is_your_friend?, only: [:destroy]
 
   def index
     user = User.find(params[:profile_id])
@@ -28,5 +30,9 @@ class FriendshipsController < ApplicationController
   private
     def friendship_params
       params.require(:friendship).permits(:user_1_id, :user_2_id)
+    end
+
+    def is_your_friend?
+      redirect_to(root_url) unless current_user.all_friends.include?(User.find(params[:profile_id]))
     end
 end

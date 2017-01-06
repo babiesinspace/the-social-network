@@ -1,0 +1,21 @@
+<%= form_for(@user, as: :profile, url: edit_profile_path(@user), method: :patch) do |f| %>
+  <%= f.label :full_name %>
+  <%= f.text_field :full_name %>
+  <br/>
+  <%= f.label :birthday %>
+  <%= f.date_field :birthday %>
+  <br/>
+  <%= f.label :hometown %>
+  <%= f.text_field :hometown %>
+  <br/>
+  <%= f.label :current_city %>
+  <%= f.text_field :current_city %>
+  <br/>
+  <%= f.label :college %>
+  <%= f.text_field :education %>
+  <br/>
+  <%= f.label :relationship_status %>
+  <%= f.text_field :relationship_status %>
+  <br/>
+  <%= f.submit "Save" %>
+<% end %>
