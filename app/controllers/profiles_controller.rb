@@ -20,10 +20,10 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    user = User.find(params[:id])
+    @user = User.find(params[:id])
     respond_to do |format|
       format.html
-      format.json {render json: user }
+      format.json {render json: @user }
     end
   end
 
