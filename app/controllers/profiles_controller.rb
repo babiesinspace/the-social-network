@@ -1,7 +1,10 @@
 class ProfilesController < ApplicationController
   def index
     users = User.all
-    render json: users
+    respond_to do |format|
+      format.html
+      format.json { render json: users }
+    end
   end
 
   def show
@@ -18,12 +21,10 @@ class ProfilesController < ApplicationController
 
   def edit
     user = User.find(params[:id])
-    render json: user
-  end
-
-  def destroy
-    session.clear
-    redirect_to root_url
+    respond_to do |format|
+      format.html
+      format.json {render json: user }
+    end
   end
 
 end
