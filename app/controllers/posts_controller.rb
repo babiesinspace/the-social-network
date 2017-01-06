@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 #Untested (must first create form)
   def destroy
     post = Post.find(params[:id])
-    if current_user == post.author || current_user == post.receiver
+    if post.user_authorized?
       post.destroy
       respond_to do |format|
         format.html { redirect_to profile_url(post.receiver) }
