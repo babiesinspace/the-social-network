@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   # get 'profiles/:id/edit', to: 'profiles#edit', as: :edit_profile
   # get '/profiles/:id', to: 'profiles#show'
 
+  resources :profiles, only: [:show, :index, :edit] do
+    #add custom route for profiles/search
+    resources :posts, only: [:index, :create, :destroy]
+    resources :friendships, only: [:index, :create, :destroy]
+    resources :friend_requests, only: [:index, :create, :destroy]
 
-  resources :profiles, only: [:new, :create, :index] do
-    resources :posts, only: [:create]
   end
 
   devise_for :users, :controllers => {:registrations => "registrations"}
