@@ -1,4 +1,7 @@
 class ProfilesController < ApplicationController
+  before_action :is_friend?, only: [:show]
+  before_action :authorized_to_edit?, only: [:edit, :update]
+
   def index
     users = User.all
     respond_to do |format|
@@ -40,6 +43,14 @@ class ProfilesController < ApplicationController
 
     def profile_params
       params.require(:user).permits(:full_name, :birthday, :hometown, :current_city, :education, :relationship_status)
+    end
+
+    def is_friend?
+      redirect_to(root_url) unless (current_user.all_friends.include?(User.find(params[:id])) || current_user == User.find(params[:id]))
+    end
+
+    def authorized_to_edit?
+      redirect_to(root_url) unless (current_user == User.find(params[:id]))
     end
 
 end
