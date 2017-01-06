@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   get '/logout', to: 'profiles#destroy'
 
   resources :profiles, only: [:new, :create, :index, :edit] do
-    resources :posts, only: [:create]
+    #add custom route for profiles/search
+    resources :posts, only: [:create, :delete]
+    resources :friendships, only: [:index, :create, :destroy]
+    resources :friend_requests, only: [:index, :create, :destroy]
   end
 
   devise_for :users, :controllers => {:registrations => "registrations"}
