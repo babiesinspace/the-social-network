@@ -1,5 +1,6 @@
 class FriendRequestsController < ApplicationController
-  # before_action: :authenticate_user!
+  # before_action :authenticate_user!
+  before_action :authorize_user, only: [:create, :delete]
 
   def index
     user = User.find(params[:profile_id])
@@ -24,13 +25,21 @@ class FriendRequestsController < ApplicationController
   end
 
   def destroy
-
+    # reject request
+    request = FriendRequest.find(params[:id])
+    request.destroy
   end
 
   private
 
   def friend_requests_params
     params.require(:friend_request).permits(:requester_id, :receiver_id)
+  end
+
+  def authorize_user
+    receiver = FriendRequest.find(params[:id]).receiver
+    sender = FriendRequest.find(params[:id]).requester
+    redirect_to(root_url) unless (current_user(receiver) || current_user(sender))
   end
 
 end
